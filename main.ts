@@ -1,5 +1,5 @@
 //% color="#006400" weight=20 icon="\uf1b9"
-namespace cbit_小车类 {
+namespace 小车类 {
     //% blockId=cbit_ultrasonic_car block="超声波返回(cm)|Trig %pin1|Echo %pin2"
     //% color="#006400"
     //% weight=98
