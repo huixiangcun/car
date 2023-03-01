@@ -1,6 +1,19 @@
 //% color="#006400" weight=100 icon="\uf1b9" block="小车类"
 namespace Car {
-    
+    export enum enRocker {
+        //% blockId="Nostate" block="无"
+        Nostate = 0,
+        //% blockId="Up" block="上"
+        Up,
+        //% blockId="Down" block="下"
+        Down,
+        //% blockId="Left" block="左"
+        Left,
+        //% blockId="Right" block="右"
+        Right,
+        //% blockId="Press" block="按下"
+        Press
+    }
     //% block="右轮|转速 %speed|P1 %pin1|P2 %pin2" weight=20
     //% speed.min=-10 x.max=10 speed.defl=0 
     //% group='转轮'
@@ -44,5 +57,47 @@ namespace Car {
         // 读取脉冲
         let d = pins.pulseIn(pin6, PulseValue.High, 43200);
         return d / 58;
+    }
+    //% blockId=cbit_Rocker block="遥杆|VRX %pin1|VRY %pin2|SW %pin3|返回 %value"
+    //% color="#006400"
+    //% weight=21
+    //% blockGap=10
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=6
+    //% group='操作杆模块'
+    export function Rocker(pin1: AnalogPin, pin2: AnalogPin, pin3: AnalogPin, value: enRocker): boolean {
+
+        //pins.setPull(pin3, PinPullMode.PullUp);
+        let x = pins.analogReadPin(pin1);
+        let y = pins.analogReadPin(pin2);
+        let z = pins.analogReadPin(pin3);
+        let now_state = enRocker.Nostate;
+
+        if (x <= 20) // 上
+        {
+
+            now_state = enRocker.Up;
+
+        }
+        if (x >= 1000) //
+        {
+
+            now_state = enRocker.Down;
+        }
+        if (y <= 50) //右
+        {
+            now_state = enRocker.Right;
+        }
+        if (y >= 1000) //左
+        {
+            now_state = enRocker.Left;
+        }
+        if (z <= 20)
+            now_state = enRocker.Press;
+        
+        if (now_state == value)
+            return true;
+        else
+            return false;
+
     }
 }
