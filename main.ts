@@ -72,7 +72,7 @@ namespace Car {
         let z = pins.analogReadPin(pin3);
         let now_state = enRocker.Nostate;
 
-        if (x <= 50) // 上
+        if (x <= 20) // 上
         {
 
             now_state = enRocker.Up;
@@ -83,7 +83,7 @@ namespace Car {
 
             now_state = enRocker.Down;
         }
-        if (y <= 50) //右
+        if (y <= 20) //右
         {
             now_state = enRocker.Right;
         }
@@ -91,7 +91,7 @@ namespace Car {
         {
             now_state = enRocker.Left;
         }
-        if (z <= 50)
+        if (z <= 20)
             now_state = enRocker.Press;
         
         if (now_state == value)
