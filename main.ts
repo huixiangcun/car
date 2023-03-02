@@ -78,7 +78,7 @@ namespace Car {
             now_state = enRocker.Up;
 
         }
-        if (x >= 900) //下
+        if (x >= 800) //下
         {
 
             now_state = enRocker.Down;
@@ -87,7 +87,7 @@ namespace Car {
         {
             now_state = enRocker.Right;
         }
-        if (y >= 900) //左
+        if (y >= 800) //左
         {
             now_state = enRocker.Left;
         }
