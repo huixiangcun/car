@@ -46,13 +46,13 @@ namespace Car {
     //% blockGap=10
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     //% group='超声波模块'
-    export function Ultrasonic_Car(pin5: DigitalPin, pin6: DigitalPin): number {
+    export function Ultrasonic_Car(pin5: AnalogPin, pin6:AnalogPin): number {
         pins.setPull(pin5, PinPullMode.PullNone);
-        pins.digitalWritePin(pin5, 0);
+        pins.analogWritePin(pin5, 0);
         control.waitMicros(2);
-        pins.digitalWritePin(pin5, 1);
+        pins.analogWritePin(pin5, 1);
         control.waitMicros(10);
-        pins.digitalWritePin(pin5,0);
+        pins.analogWritePin(pin5,0);
 
         // 读取脉冲
         let d = pins.pulseIn(pin6, PulseValue.High, 43200);
