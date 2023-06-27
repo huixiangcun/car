@@ -54,7 +54,7 @@ namespace Car {
     //% blockGap=10
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     //% group='超声波模块'
-    export function ping(trig: DigitalPin, echo: DigitalPin, unit: PingUnit, maxCmDistance = 500): number {
+    export function ping(trig: DigitalPin, echo: DigitalPin, unit: PingUnit=PingUnit.Centimeters, maxCmDistance = 500): number {
         // send pulse
         pins.setPull(trig, PinPullMode.PullNone);
         pins.digitalWritePin(trig, 0);
