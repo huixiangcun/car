@@ -1,11 +1,3 @@
-enum PingUnit {
-    //% block="μs"
-    MicroSeconds,
-    //% blockId="Centimeters" block="cm"
-    Centimeters=0,
-    //% block="inches"
-    Inches
-    }
 //% color="#006400" weight=100 icon="\uf1b9" block="小车类"
 namespace Car {
     export enum enRocker {
@@ -47,14 +39,21 @@ namespace Car {
             pins.analogWritePin(pin4, speed * -10)
         }
     }
-    
+    export enum PingUnit {
+    //% block="cm"
+    Centimeters,
+    //% block="μs"
+    MicroSeconds,
+    //% block="inches"
+    Inches
+    }
     //% blockId=cbit_ultrasonic_car block="超声波返回(cm)|Trig %trig|Echo %echo|单位 %unit"
     //% color="#006400"
     //% weight=18
     //% blockGap=10
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     //% group='超声波模块'
-    export function ping(trig: DigitalPin, echo: DigitalPin, unit: PingUnit=PingUnit.Centimeters, maxCmDistance = 500): number {
+    export function ping(trig: DigitalPin, echo: DigitalPin, unit: PingUnit, maxCmDistance = 500): number {
         // send pulse
         pins.setPull(trig, PinPullMode.PullNone);
         pins.digitalWritePin(trig, 0);
@@ -65,13 +64,13 @@ namespace Car {
 
         // read pulse
         const d = pins.pulseIn(echo, PulseValue.High, maxCmDistance * 58);
-
         switch (unit) {
             case PingUnit.Centimeters: return Math.idiv(d, 58);
             case PingUnit.Inches: return Math.idiv(d, 148);
             default: return d ;
-            }
         }
+    }
+    
     //% blockId=cbit_Rocker block="遥杆|VRX %pin1|VRY %pin2|SW %pin3|返回 %value"
     //% color="#006400"
     //% weight=21
