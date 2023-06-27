@@ -1,8 +1,8 @@
 enum PingUnit {
-    //% block="cm"
-    Centimeters,
     //% block="μs"
     MicroSeconds,
+    //% blockId="Centimeters" block="cm"
+    Centimeters=0,
     //% block="inches"
     Inches
     }
@@ -72,7 +72,6 @@ namespace Car {
             default: return d ;
             }
         }
-    }
     //% blockId=cbit_Rocker block="遥杆|VRX %pin1|VRY %pin2|SW %pin3|返回 %value"
     //% color="#006400"
     //% weight=21
