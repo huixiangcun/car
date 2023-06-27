@@ -48,7 +48,7 @@ namespace Car {
         }
     }
     
-    //% blockId=cbit_ultrasonic_car block="超声波返回(cm)|Trig %pin1|Echo %pin2"
+    //% blockId=cbit_ultrasonic_car block="超声波返回(cm)|Trig %trig|Echo %echo|单位 %unit"
     //% color="#006400"
     //% weight=18
     //% blockGap=10
