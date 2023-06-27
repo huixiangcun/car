@@ -1,3 +1,11 @@
+enum PingUnit {
+    //% block="μs"
+    MicroSeconds,
+    //% block="cm"
+    Centimeters,
+    //% block="inches"
+    Inches
+    }
 //% color="#006400" weight=100 icon="\uf1b9" block="小车类"
 namespace Car {
     export enum enRocker {
@@ -39,14 +47,7 @@ namespace Car {
             pins.analogWritePin(pin4, speed * -10)
         }
     }
-    enum PingUnit {
-    //% block="μs"
-    MicroSeconds,
-    //% block="cm"
-    Centimeters,
-    //% block="inches"
-    Inches
-    }
+    
     //% blockId=cbit_ultrasonic_car block="超声波返回(cm)|Trig %pin1|Echo %pin2"
     //% color="#006400"
     //% weight=18
