@@ -39,24 +39,38 @@ namespace Car {
             pins.analogWritePin(pin4, speed * -10)
         }
     }
-    
+    enum PingUnit {
+    //% block="μs"
+    MicroSeconds,
+    //% block="cm"
+    Centimeters,
+    //% block="inches"
+    Inches
+    }
     //% blockId=cbit_ultrasonic_car block="超声波返回(cm)|Trig %pin1|Echo %pin2"
     //% color="#006400"
     //% weight=18
     //% blockGap=10
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     //% group='超声波模块'
-    export function Ultrasonic_Car(pin5: DigitalPin, pin6:DigitalPin): number {
-        pins.setPull(pin5, PinPullMode.PullNone);
-        pins.digitalWritePin(pin5, 0);
+    export function ping(trig: DigitalPin, echo: DigitalPin, unit: PingUnit, maxCmDistance = 500): number {
+        // send pulse
+        pins.setPull(trig, PinPullMode.PullNone);
+        pins.digitalWritePin(trig, 0);
         control.waitMicros(2);
-        pins.digitalWritePin(pin5, 1);
+        pins.digitalWritePin(trig, 1);
         control.waitMicros(10);
-        pins.digitalWritePin(pin5,0);
+        pins.digitalWritePin(trig, 0);
 
-        // 读取脉冲
-        let d = pins.pulseIn(pin6, PulseValue.High, 43200);
-        return d / 58;
+        // read pulse
+        const d = pins.pulseIn(echo, PulseValue.High, maxCmDistance * 58);
+
+        switch (unit) {
+            case PingUnit.Centimeters: return Math.idiv(d, 58);
+            case PingUnit.Inches: return Math.idiv(d, 148);
+            default: return d ;
+            }
+        }
     }
     //% blockId=cbit_Rocker block="遥杆|VRX %pin1|VRY %pin2|SW %pin3|返回 %value"
     //% color="#006400"
