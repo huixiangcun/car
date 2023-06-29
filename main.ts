@@ -14,29 +14,29 @@ namespace Car {
         //% blockId="Press" block="按下"
         Press
     }
-    //% block="右轮|转速 %speed|P1 %pin1|P2 %pin2" weight=20
-    //% speed.min=-10 x.max=10 speed.defl=0 
+    //% block="右轮|转速 %speed|P12 %pin1|P13 %pin2" weight=20
+    //% speed.min=-1023 x.max=1023 speed.defl=0 
     //% group='转轮'
     export function turnleft(speed: number,pin1:AnalogPin,pin2:AnalogPin) {
         if (speed >= 0) {
-            pins.analogWritePin(pin1, speed * 10)
-            pins.analogWritePin(pin2, 0)
-        } else {
             pins.analogWritePin(pin1, 0)
-            pins.analogWritePin(pin2, speed * -10)
+            pins.analogWritePin(pin2, speed * 1)
+        } else {
+            pins.analogWritePin(pin1, speed * -1)
+            pins.analogWritePin(pin2, 0)
         }
     }
 
-    //% block="左轮|转速 %speed|P3 %pin3|P4 %pin4" weight=19
-    //% speed.min=-100 x.max=100 speed.defl=0
+    //% block="左轮|转速 %speed|P14 %pin3|P16 %pin4" weight=19
+    //% speed.min=-1023 x.max=1023 speed.defl=0
     //% group='转轮'
     export function turnright(speed: number,pin3:AnalogPin,pin4:AnalogPin) {
         if (speed >= 0) {
-            pins.analogWritePin(pin3, speed * 10)
+            pins.analogWritePin(pin3, speed * 1)
             pins.analogWritePin(pin4,0)
         } else {
             pins.analogWritePin(pin3, 0)
-            pins.analogWritePin(pin4, speed * -10)
+            pins.analogWritePin(pin4, speed * -1)
         }
     }
     export enum PingUnit {
