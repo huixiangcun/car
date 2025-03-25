@@ -14,6 +14,18 @@ namespace Car {
         //% blockId="Press" block="按下"
         Press
     }
+    //% blockId=getText block="字符串| %string01" weight=22
+    //% group='自定义'
+    //% blockGap=10
+    export function returnString(string01: string):string{
+        return string01;
+    }
+    //% blockId=getNumber block="数字| %number01" weight=21
+    //% group='自定义'
+    //% blockGap=10
+    export function returnNumber(number01: number):number{
+        return number01;
+    }
     //% block="右轮|转速 %speed|P12 %pin1|P13 %pin2" weight=20
     //% speed.min=-1023 x.max=1023 speed.defl=0 
     //% group='转轮'
